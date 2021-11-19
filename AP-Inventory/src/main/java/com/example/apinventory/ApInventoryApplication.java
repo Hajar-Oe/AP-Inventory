@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import repository.ProductRepository;
 @Configuration
 @EnableJpaRepositories(basePackages = "repository")
@@ -22,7 +23,8 @@ public class ApInventoryApplication {
     }
     @Autowired
     @Bean
-    CommandLineRunner start(ProductRepository productRepository){
+    CommandLineRunner start(ProductRepository productRepository, RepositoryRestConfiguration restConfiguration){
+        restConfiguration.exposeIdsFor(product.class);
         return args -> {
             productRepository.save(new product(null,"Computer Desk Top HP",900));
             productRepository.save(new product(null,"Printer Epson",80));

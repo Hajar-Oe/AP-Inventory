@@ -3,7 +3,7 @@ package com.example.billingservice.model;
 import lombok.Data;
 
 @Data
-public class customer {
+public class Customer {
     private Long id;
     private String name;
     private String email;
